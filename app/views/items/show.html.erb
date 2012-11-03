@@ -5,7 +5,9 @@
 </div>
 
 <div id="right_column">
-	<img src="http://imagemockup.com/300/300" />
+	<% if @item.photo.exists? then %>
+		<%= image_tag @item.photo.url(:big) %>
+	<% end %>
 </div>
 <div class="clr"></div>
 

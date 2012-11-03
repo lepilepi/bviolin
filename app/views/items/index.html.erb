@@ -12,7 +12,9 @@
 	<% @items.each do |item| %>
 		<li>
 			<%= link_to item do %>
-				<img src="http://imagemockup.com/100/100/?1" />
+				<% if item.photo.exists? then %>
+					<%= image_tag item.photo.url(:thumb) %>
+				<% end %>
 			<% end %>
 			<div class="item_box">
 				<%= link_to item do %>
