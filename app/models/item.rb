@@ -9,4 +9,6 @@ class Item < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :price
+
+  has_many :item_photos
 end
