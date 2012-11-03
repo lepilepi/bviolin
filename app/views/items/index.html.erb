@@ -14,6 +14,8 @@
 			<%= link_to item do %>
 				<% if item.photo.exists? then %>
 					<%= image_tag item.photo.url(:thumb) %>
+				<% else %>
+					<%= image_tag "/images/default.png" %>
 				<% end %>
 			<% end %>
 			<div class="item_box">
