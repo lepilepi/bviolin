@@ -1,0 +1,63 @@
+<h1>Edit item</h1>
+
+<%= render 'form' %>
+
+<hr/>
+
+<h1>Upload image</h1>
+<%= form_tag("/search", :method => "get") do %>
+	<table>
+		<tr>
+			<th><%= label_tag(:file, "Image file") %></th>
+			<td><%= file_field_tag(:file) %></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td><%= submit_tag("Upload") %></td>
+		</tr>
+	</table>
+<% end %>
+
+<hr/>
+
+<h1>Manage images</h1>
+<p>Click on the images to make them default.</p>
+
+<div class="thumbs">
+	<img src="http://imagemockup.com/100/100/?1" /><br/>
+	<a href="#">remove</a>
+</div>
+<div class="thumbs">
+	<img src="http://imagemockup.com/100/100/?2" /><br/>
+	<a href="#">remove</a>
+</div>
+<div class="thumbs">
+	<img src="http://imagemockup.com/100/100/?3" /><br/>
+	<a href="#">remove</a>
+</div>
+<div class="thumbs active">
+	<img src="http://imagemockup.com/100/100/?4" /><br/>
+	<a href="#">remove</a>
+</div>
+<div class="thumbs">
+	<img src="http://imagemockup.com/100/100/?5" /><br/>
+	<a href="#">remove</a>
+</div>
+<div class="thumbs">
+	<img src="http://imagemockup.com/100/100/?6" /><br/>
+	<a href="#">remove</a>
+</div>
+<div class="clr"></div>
+
+<hr/>
+
+<h1>Delete item</h1>
+<p>Deleting an item is permanent. Please consider to hide it (uncheck "published") instead of deleting.</p>
+<td><%= submit_tag("Delete permanently") %></td>
+
+<p></p>
+<p>
+	<%= link_to 'Show', @item %> |
+	<%= link_to 'Back to list', items_path %>
+</p>
+

@@ -1,0 +1,27 @@
+<%= form_tag("/search", :method => "get", :id => "search_form") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= select_tag(:category_id, options_for_select([['all', 0], ['category 1', 1], ['category 2', 2]]) ) %>
+  <%= select_tag(:sort, options_for_select([['sort by name', 1], ['sort by price', 2], ['sort by date', 3]]) ) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<hr/>
+
+<ul>
+	<% @items.each do |item| %>
+		<li>
+			<%= link_to item do %>
+				<img src="http://imagemockup.com/100/100/?1" />
+			<% end %>
+			<div class="item_box">
+				<%= link_to item do %>
+					<%= item.name %>
+				<% end %>
+				<p><%= item.short_desc %></p>
+			</div>
+			<div class="clr"></div>
+		</li>
+	<% end %>
+</ul>
+

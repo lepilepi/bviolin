@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  short_desc: MyString
+  long_desc: MyString
+  price: 1.5
+  published: false
+
+two:
+  name: MyString
+  short_desc: MyString
+  long_desc: MyString
+  price: 1.5
+  published: false

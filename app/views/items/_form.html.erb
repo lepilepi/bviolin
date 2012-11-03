@@ -1,0 +1,38 @@
+<%= form_for(@item) do |f| %>
+    <% if @item.errors.any? %>
+        <p><%= pluralize(@item.errors.count, "error") %></p>
+
+        <ul class="error_list">
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+        
+    <% end %>
+	<table>
+		<tr>
+			<th><%= f.label :name %></th>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :short_desc %></th>
+			<td><%= f.text_area :short_desc %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :long_desc %></th>
+			<td><%= f.text_area :long_desc %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :price %></th>
+			<td><%= f.text_field :price %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :published %></th>
+			<td><%= f.check_box :published %></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td><%= f.submit %></td>
+		</tr>
+	</table>
+<% end %>

@@ -1,0 +1,37 @@
+<h1>Place order</h1>
+<%= form_tag("/search", :method => "get") do %>
+	<table>
+		<tr>
+			<th><%= label_tag(:name, "Name") %></th>
+			<td><%= text_field_tag(:name) %></td>
+		</tr>
+		<tr>
+			<th><%= label_tag(:email, "Email") %></th>
+			<td><%= text_field_tag(:email) %></td>
+		</tr>
+		<tr>
+			<th><%= label_tag(:address, "Address") %></th>
+			<td><%= text_field_tag(:address) %></td>
+		</tr>
+		<tr>
+			<th><%= label_tag(:phone, "Phone") %></th>
+			<td><%= text_field_tag(:phone) %></td>
+		</tr>
+		<tr>
+			<th><%= label_tag(:delivery, "Delivery method") %></th>
+			<td><%= select_tag(:delivery, options_for_select([['Express delivery - 35 EUR', 0], ['Normal delivery - 10 EUR', 1], ['Snail-mail - FREE', 2]]) ) %></td>
+		</tr>
+		<tr>
+			<th><%= label_tag(:notes, "Notes") %></th>
+			<td><%= text_area_tag(:notes) %></td>
+		</tr>
+		<tr>
+			<th><%= label_tag(:notes, "Total price") %></th>
+			<td>1098 EUR</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td><%= submit_tag("Place order") %></td>
+		</tr>
+	</table>
+<% end %>

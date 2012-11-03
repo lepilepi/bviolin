@@ -1,0 +1,68 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#search_form{
+	text-align: center;
+}
+
+/* -- list -- */
+ul{
+	list-style-type: none;
+	padding: 0px;
+}
+
+li{
+	border-bottom: 1px solid #000;
+	padding: 10px;
+}
+
+li img{
+	float: left;
+}
+
+
+li .item_box{
+	float: left;
+	width: 700px;
+	margin-left: 20px;
+}
+
+/* -- details -- */
+#left_column{
+	width: 425px;
+	text-align: justify;
+	float:left;
+	padding: 10px;
+}
+
+#right_column{
+	width: 425px;
+	float:left;
+	padding: 10px;
+}
+
+form input[type=text], form textarea{
+	width: 300px;	
+}
+
+.thumbs{
+	float:left;
+	padding: 10px;
+}
+.thumbs.active{
+	border: 2px solid blue;
+}
+#cart_bottom{
+	text-align: right;
+}
+#cart{
+	width: 100%;
+	border-collapse: collapse;
+}
+#cart tr{
+	border-bottom: 1px solid black;
+}
+#cart td{
+	padding: 5px;
+}
