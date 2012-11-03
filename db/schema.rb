@@ -11,16 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102235506) do
+ActiveRecord::Schema.define(:version => 20121103004652) do
 
   create_table "items", :force => true do |t|
-    t.string   "name",                          :null => false
-    t.string   "short_desc", :default => ""
-    t.string   "long_desc",  :default => ""
-    t.float    "price",                         :null => false
-    t.boolean  "published",  :default => false, :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.string   "name",                                  :null => false
+    t.string   "short_desc",         :default => ""
+    t.string   "long_desc",          :default => ""
+    t.float    "price",                                 :null => false
+    t.boolean  "published",          :default => false, :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
 end
