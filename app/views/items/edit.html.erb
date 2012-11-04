@@ -5,15 +5,26 @@
 <hr/>
 
 <h1>Upload image</h1>
-<%= form_tag("/search", :method => "get") do %>
-	<table>
+<%= form_for @item_photo, :url => url_for(:action => 'update', :controller => 'items'), :method=>'put', :html => { :multipart => true } do |f| %>
+    <% if @item_photo.errors.any? %>
+        <p><%= pluralize(@item_photo.errors.count, "error") %></p>
+
+        <ul class="error_list">
+        <% @item_photo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+
+    <% end %>
+
+    <table>
 		<tr>
-			<th><%= label_tag(:file, "Image file") %></th>
-			<td><%= file_field_tag(:file) %></td>
+			<th><%= f.label :photo %></th>
+			<td><%= f.file_field :photo %></td>
 		</tr>
 		<tr>
 			<th></th>
-			<td><%= submit_tag("Upload") %></td>
+			<td><%= f.submit %></td>
 		</tr>
 	</table>
 <% end %>
@@ -23,30 +34,15 @@
 <h1>Manage images</h1>
 <p>Click on the images to make them default.</p>
 
-<div class="thumbs">
-	<img src="http://imagemockup.com/100/100/?1" /><br/>
-	<a href="#">remove</a>
-</div>
-<div class="thumbs">
-	<img src="http://imagemockup.com/100/100/?2" /><br/>
-	<a href="#">remove</a>
-</div>
-<div class="thumbs">
-	<img src="http://imagemockup.com/100/100/?3" /><br/>
-	<a href="#">remove</a>
-</div>
-<div class="thumbs active">
-	<img src="http://imagemockup.com/100/100/?4" /><br/>
-	<a href="#">remove</a>
-</div>
-<div class="thumbs">
-	<img src="http://imagemockup.com/100/100/?5" /><br/>
-	<a href="#">remove</a>
-</div>
-<div class="thumbs">
-	<img src="http://imagemockup.com/100/100/?6" /><br/>
-	<a href="#">remove</a>
-</div>
+<% @item.item_photos.each do |item_photo| %>
+	<% if item_photo.photo.exists? then %>
+		<div class="thumbs active">
+			<%= image_tag item_photo.photo.url(:thumb) %><br/>
+			<a href="#">remove</a>
+		</div>
+	<% end %>
+<% end %>
+
 <div class="clr"></div>
 
 <hr/>

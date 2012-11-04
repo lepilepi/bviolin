@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
 
   def edit
   	@item = Item.find(params[:id])
+  	@item_photo = ItemPhoto.new
   end
 
   def create
@@ -34,13 +35,27 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     respond_to do |format|
-      if @item.update_attributes(params[:item])
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { head :no_content }
+      if params.has_key?(:item_photo)
+      	  @item_photo = ItemPhoto.new(params[:item_photo])
+      	  @item_photo.item = @item
+          if @item_photo.save
+	        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+	        format.json { render json: @item_photo, status: :created, location: @item_photo }
+	      else
+	        format.html { render action: "edit" }
+	        format.json { render json: @item_photo.errors, status: :unprocessable_entity }
+	      end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+      	  if @item.update_attributes(params[:item])
+	        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+	        format.json { head :no_content }
+	      else
+	        format.html { render action: "edit" }
+	        format.json { render json: @item.errors, status: :unprocessable_entity }
+	      end
       end
+
+      
     end
   end
 
