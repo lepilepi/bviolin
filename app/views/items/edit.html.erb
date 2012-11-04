@@ -49,7 +49,10 @@
 
 <h1>Delete item</h1>
 <p>Deleting an item is permanent. Please consider to hide it (uncheck "published") instead of deleting.</p>
-<td><%= submit_tag("Delete permanently") %></td>
+
+<%= form_for @item, :method => "delete" do |f| %>
+	<%= f.submit :value => "Delete permanently" %>
+<% end %>
 
 <p></p>
 <p>

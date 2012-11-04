@@ -53,11 +53,14 @@ class ItemsController < ApplicationController
 	        format.html { render action: "edit" }
 	        format.json { render json: @item.errors, status: :unprocessable_entity }
 	      end
-      end
-
-      
+      end      
     end
+
   end
 
+  def destroy
+  	Item.find(params[:id]).destroy
+    redirect_to :action => 'index'
+  end
 
 end
