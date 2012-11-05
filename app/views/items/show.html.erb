@@ -14,8 +14,8 @@
 <div class="clr"></div>
 
 <h2><%= @item.price %> EUR</h2>
-<%= form_tag("/cart/add", :method => "post") do %>
-  <%= text_field_tag(:num) %>
+<%= form_for @item, :url => url_for(:action => 'update', :controller => 'cart', :id => @item.id), :method=>'put' do |f| %>
+  <%= text_field_tag(:amount) %>
   <%= submit_tag("Add to cart") %>
 <% end %>
 
