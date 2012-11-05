@@ -61,10 +61,11 @@ class ItemsController < ApplicationController
   def destroy
   	if params.has_key?(:item_photo_id)
   		ItemPhoto.find(params[:item_photo_id]).destroy
+  		redirect_to :action => 'edit'
   	else
   		Item.find(params[:id]).destroy
+  		redirect_to :action => 'index'
   	end
-    redirect_to :action => 'index'
   end
 
   def make_default
