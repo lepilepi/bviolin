@@ -59,8 +59,24 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-  	Item.find(params[:id]).destroy
+  	if params.has_key?(:item_photo_id)
+  		ItemPhoto.find(params[:item_photo_id]).destroy
+  	else
+  		Item.find(params[:id]).destroy
+  	end
     redirect_to :action => 'index'
+  end
+
+  def make_default
+  	item = Item.find(params[:id])
+  	item_photo = ItemPhoto.find(params[:item_photo_id])
+
+  	if item.item_photos.include?(item_photo)
+  		item.item_photo = item_photo
+  		item.save
+  	end
+
+  	redirect_to :action => 'edit'
   end
 
 end

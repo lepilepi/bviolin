@@ -12,8 +12,8 @@
 	<% @items.each do |item| %>
 		<li>
 			<%= link_to item do %>
-				<% if item.photo.exists? then %>
-					<%= image_tag item.photo.url(:thumb) %>
+				<% if item.item_photo and item.item_photo.photo.exists? then %>
+					<%= image_tag item.item_photo.photo.url(:thumb) %>	
 				<% else %>
 					<%= image_tag "/images/default.png" %>
 				<% end %>

@@ -5,8 +5,10 @@
 </div>
 
 <div id="right_column">
-	<% if @item.photo.exists? then %>
-		<%= image_tag @item.photo.url(:big) %>
+	<% if @item.item_photo then %>
+		<% if @item.item_photo.photo.exists? then %>
+			<%= image_tag @item.item_photo.photo.url(:big) %>
+		<% end %>
 	<% end %>
 </div>
 <div class="clr"></div>

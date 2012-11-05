@@ -36,9 +36,15 @@
 
 <% @item.item_photos.each do |item_photo| %>
 	<% if item_photo.photo.exists? then %>
-		<div class="thumbs active">
-			<%= image_tag item_photo.photo.url(:thumb) %><br/>
-			<a href="#">remove</a>
+		<div class="thumbs<%= if item_photo==@item.item_photo then ' active' end %>">
+			<%= link_to :action=>'make_default', :id=>@item.id, :item_photo_id=>item_photo.id do %>
+				<%= image_tag item_photo.photo.url(:thumb) %>
+			<% end %>
+			<br/>
+			<%= form_for @item, :url => url_for(:action => 'update', :controller => 'items'), :method=>'delete' do |f| %>
+				<%= hidden_field_tag 'item_photo_id', item_photo.id %>
+				<%= f.submit :value => "remove" %>
+			<% end %>
 		</div>
 	<% end %>
 <% end %>
