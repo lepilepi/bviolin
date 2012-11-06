@@ -33,13 +33,15 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    @item_photo = ItemPhoto.new
 
     respond_to do |format|
       if params.has_key?(:item_photo)
       	  @item_photo = ItemPhoto.new(params[:item_photo])
       	  @item_photo.item = @item
           if @item_photo.save
-	        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+          	flash[:notice] = 'Photo was successfully uploaded.'
+	        format.html { redirect_to :action => 'edit' }
 	        format.json { render json: @item_photo, status: :created, location: @item_photo }
 	      else
 	        format.html { render action: "edit" }
