@@ -1,27 +1,42 @@
-<h1>Your cart <%= @session %></h1>
-<table id="cart">
-	<tr>
-		<th>Name</th>
-		<th>Quantity</th>
-		<th>Price</th>
-		<th><a href="#">remove all</a></th>
-	</tr>
-	<% @item_hash.each do |item, amount| %>
+<h1>Your cart</h1>
+<% if @item_hash and @item_hash.length>0 then %>
+	<table id="cart">
 		<tr>
-			<td><%= item.name %></td>
-			<td><%= amount %></td>
-			<td><%= amount*item.price %> EUR</td>
-			<td><a href="#">remove</a></td>
+			<th>Name</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>
+				<%= form_tag url_for(:action => 'remove', :controller => 'cart'), :method=>:put do |f| %>
+				  <%= submit_tag("remove all") %>
+				<% end %>
+			</th>
 		</tr>
-	<% end %>
-</table>
+		<% @item_hash.each do |item, amount| %>
+			<tr>
+				<td>
+					<%= link_to item do %>
+						<%= item.name %>
+					<% end %>
+				</td>
+				<td><%= amount %></td>
+				<td><%= amount*item.price %> EUR</td>
+				<td>
+					<%= form_for item, :url => url_for(:action => 'remove', :controller => 'cart', :id => item.id), :method=>'put' do |f| %>
+					  <%= submit_tag("remove") %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	<br/>
+	<br/>
 
-<br/>
-<br/>
-
-<div id="cart_bottom">
-	<strong>Total: 1098 EUR</strong>
-	<%= form_tag("/search", :method => "get") do %>
-		<%= submit_tag("Checkout") %>
-	<% end %>
-</div>
+	<div id="cart_bottom">
+		<strong>Total: <%= @total %> EUR</strong>
+		<%= form_tag("/search", :method => "get") do %>
+			<%= submit_tag("Checkout") %>
+		<% end %>
+	</div>
+<% else %>
+	<p>You don't have any items in your cart.</p>
+<% end %>

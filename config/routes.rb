@@ -1,10 +1,6 @@
 Bviolin::Application.routes.draw do
   get "cart/add"
 
-  get "cart/remove"
-
-  get "cart/list"
-
   get "cart/clear"
 
   get "cart/checkout"
