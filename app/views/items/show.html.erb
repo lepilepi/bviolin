@@ -16,6 +16,15 @@
 			<%= image_tag @item.item_photo.photo.url(:big) %>
 		<% end %>
 	<% end %>
+
+	<div>
+		<% @item.item_photos.each do |item_photo| %>
+			<% if item_photo.photo.exists? and not item_photo==@item.item_photo then %>
+				<%= image_tag item_photo.photo.url(:thumb) %>	
+			<% end %>
+		<% end %>
+	</div>
+
 </div>
 <div class="clr"></div>
 
