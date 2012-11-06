@@ -32,10 +32,8 @@
 	<br/>
 
 	<div id="cart_bottom">
-		<strong>Total: <%= @total %> EUR</strong>
-		<%= form_tag("/search", :method => "get") do %>
-			<%= submit_tag("Checkout") %>
-		<% end %>
+		<strong>Total: <%= @total %> EUR</strong><br/>
+		<%= link_to "Checkout", url_for(:action => 'checkout', :controller => 'cart') %>
 	</div>
 <% else %>
 	<p>You don't have any items in your cart.</p>

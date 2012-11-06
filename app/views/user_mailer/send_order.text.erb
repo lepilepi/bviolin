@@ -1,0 +1,14 @@
+Order details
+
+Name: <%= @order[:name] %>
+Email: <%= @order[:email] %>
+Address: <%= @order[:address] %>
+Phone: <%= @order[:phone] %>
+Notes: <%= @order[:notes] %>
+Delivery: <%= @order[:delivery] %>
+
+<% @item_hash.each do |item, amount| %>
+	<%= item.name %>, <%= amount %>
+<% end %>
+
+Total: <%= @total %>

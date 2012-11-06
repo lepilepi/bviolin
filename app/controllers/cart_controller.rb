@@ -70,11 +70,14 @@ class CartController < ApplicationController
         flash[:error] = "Please fill out all the fields! (#{key} was empty)"
         return redirect_to action: "checkout"
       end
-    end 
+    end
+
+    UserMailer.send_order(session, params[:order]).deliver
 
     if session.has_key?(:items)
       session.delete(:items)
     end
+    flash[:notice] = "Thank you for your order!"
     redirect_to action: "index"
 
   end
