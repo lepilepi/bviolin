@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
   def create
   	user = User.find_by_username(params[:session][:username].downcase)
     if user && user.authenticate(params[:session][:password])
-      session['logged_in'] = true
-      flash[:notice] =  "You have logged in as administrator."
+      session[:logged_in] = true
       redirect_to :action => "index", :controller => "items"
     else
       flash.now[:error] = 'Invalid username/password combination'

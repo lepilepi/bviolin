@@ -12,12 +12,20 @@
 			<h1>Main title</h1>
 		<% end %>
 		<hr/>
+		<% if session[:logged_in] %>
+			<p>You are logged in as administrator. <%= link_to 'logout', url_for(:action => 'destroy', :controller => 'sessions') %></p>
+			<hr/>
+		<% end %>
 
 		<% if flash[:error] %>
 	      <p class="error"><%= flash[:error] %></p>
 	    <% end %>
 	    <% if flash[:notice] %>
 	      <p class="notice"><%= flash[:notice] %></p>
+	    <% end %>
+
+	    <% if flash[:error] or flash[:notice] %>
+	    	<hr/>
 	    <% end %>
 	
 		<%= yield %>
