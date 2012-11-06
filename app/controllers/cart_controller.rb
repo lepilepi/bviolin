@@ -12,7 +12,7 @@ class CartController < ApplicationController
     begin
       amount=Integer(params[:amount])
     rescue ArgumentError => e
-      flash[:error] = "sdasdas"
+      flash[:error] = "#{params[:amount]} is not a number"
       return redirect_to action: "show", controller: "items"
     end
 
@@ -54,9 +54,29 @@ class CartController < ApplicationController
     end
   end
 
-  def clear
+  def checkout
+    if session.has_key?(:total) and session.has_key?(:items) and session[:items].length>0
+      @total = session[:total]
+    else
+      render :nothing => true, :status => 403
+    end
   end
 
-  def checkout
+  def order
+    field_names = [:name, :email, :address, :phone, :notes]
+
+    field_names.each do |key|
+      if not (params[:order].has_key?(key) and params[:order][key].length>0)
+        flash[:error] = "Please fill out all the fields! (#{key} was empty)"
+        return redirect_to action: "checkout"
+      end
+    end 
+
+    if session.has_key?(:items)
+      session.delete(:items)
+    end
+    redirect_to action: "index"
+
   end
+
 end
