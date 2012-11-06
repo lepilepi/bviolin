@@ -3,6 +3,9 @@
 	<% if session[:logged_in] %>
 		<%= link_to '[edit]' , {:action => "edit", :id => @item}, :class => 'edit_link' %>
 	<% end %>
+	<% if not @item.published %>
+		<span class="draft">draft</span>
+	<% end %>
 	<p><%= @item.short_desc %></p>
 	<p><%= @item.long_desc %></p>
 </div>

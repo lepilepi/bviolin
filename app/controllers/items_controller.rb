@@ -1,23 +1,35 @@
+include ApplicationHelper
+
 class ItemsController < ApplicationController
   
   def index
-  	@items = Item.all
+  	if not session[:logged_in]
+  		@items = Item.where(:published => true)
+  	else
+  		@items = Item.all
+  	end
   end
 
   def show
   	@item = Item.find(params[:id])
+  	if not @item.published 
+  		admin_only
+  	end
   end
 
   def new
+  	admin_only
   	@item = Item.new
   end
 
   def edit
+  	admin_only
   	@item = Item.find(params[:id])
   	@item_photo = ItemPhoto.new
   end
 
   def create
+  	admin_only
     @item = Item.new(params[:item])
 
     respond_to do |format|
@@ -32,6 +44,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+  	admin_only
     @item = Item.find(params[:id])
     @item_photo = ItemPhoto.new
 
@@ -61,6 +74,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+  	admin_only
   	if params.has_key?(:item_photo_id)
   		ItemPhoto.find(params[:item_photo_id]).destroy
   		redirect_to :action => 'edit'
@@ -71,6 +85,7 @@ class ItemsController < ApplicationController
   end
 
   def make_default
+  	admin_only
   	item = Item.find(params[:id])
   	item_photo = ItemPhoto.find(params[:item_photo_id])
 
