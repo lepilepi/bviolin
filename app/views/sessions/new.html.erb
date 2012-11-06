@@ -1,0 +1,23 @@
+<h1>Sign in</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :username %></th>
+          <td><%= f.text_field :username %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :password %></th>
+          <td><%= f.password_field :password %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= f.submit "Sign in" %></td>
+        </tr>
+      <table>
+    <% end %>
+    
+  </div>
+</div>
