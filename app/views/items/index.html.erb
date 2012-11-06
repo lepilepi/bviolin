@@ -1,8 +1,9 @@
-<%= form_tag("/search", :method => "get", :id => "search_form") do %>
+<%= form_tag(items_path, :method => "get", :id => "search_form") do %>
   <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= select_tag(:category_id, options_for_select([['all', 0], ['category 1', 1], ['category 2', 2]]) ) %>
-  <%= select_tag(:sort, options_for_select([['sort by name', 1], ['sort by price', 2], ['sort by date', 3]]) ) %>
+  
+  <%= text_field_tag :search, params[:search] %>
+
+  <%= select_tag(:sort, options_for_select([['sort by name', 0], ['sort by price', 1], ['sort by date', 2]], params[:sort]) ) %>
   <%= submit_tag("Search") %>
 <% end %>
 
@@ -31,6 +32,7 @@
 					<% end %>
 				</div>
 				<p><%= item.short_desc %></p>
+				<strong><%= item.price %> EUR</strong>
 			</div>
 			<div class="clr"></div>
 		</li>

@@ -4,9 +4,9 @@ class ItemsController < ApplicationController
   
   def index
   	if not session[:logged_in]
-  		@items = Item.where(:published => true)
+  		@items = Item.where(:published => true).search(params[:search], params[:sort])
   	else
-  		@items = Item.all
+  		@items = Item.search(params[:search], params[:sort])
   	end
   end
 
