@@ -26,3 +26,7 @@ table th{
 	text-align: left;
 	min-width: 130px;
 }
+
+a{
+	text-decoration: none;
+}

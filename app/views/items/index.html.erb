@@ -19,9 +19,17 @@
 				<% end %>
 			<% end %>
 			<div class="item_box">
-				<%= link_to item do %>
-					<%= item.name %>
-				<% end %>
+				<div class="item_header">
+					<%= link_to item do %>
+						<%= item.name %>
+					<% end %>
+					<% if not item.published %>
+						<span class="draft">draft</span>
+					<% end %>
+					<% if session[:logged_in] %>
+						<%= link_to '[edit]' , {:action => "edit", :id => item}, :class => 'edit_link_right' %>
+					<% end %>
+				</div>
 				<p><%= item.short_desc %></p>
 			</div>
 			<div class="clr"></div>
