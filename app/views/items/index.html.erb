@@ -5,7 +5,18 @@
 
   <%= select_tag(:sort, options_for_select([['sort by name', 0], ['sort by price', 1], ['sort by date', 2]], params[:sort]) ) %>
   <%= submit_tag("Search") %>
+
+
+	<% if session[:items] and session[:items].length>0 then %>
+		<span id="cart_link">
+			<%= link_to :controller=>'cart', :action=>'index' do %>
+				Your cart (<%= session[:items].length %>)
+			<% end %>
+		</span>
+	<% end %>
+	
 <% end %>
+
 
 <hr/>
 
