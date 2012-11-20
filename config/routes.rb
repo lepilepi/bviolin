@@ -13,6 +13,8 @@ Bviolin::Application.routes.draw do
 
   get "items/edit"
 
+  root :to => 'items#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
