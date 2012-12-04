@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  short_desc: MyString
-  long_desc: MyString
-  price: 1.5
-  published: false
+zongora:
+  name: zongora
+  short_desc: "rózsaszín, tízezer éves"
+  long_desc: "Egyszer ráesett egy vakondra"
+  price: 15000
+  published: true
 
-two:
-  name: MyString
-  short_desc: MyString
-  long_desc: MyString
-  price: 1.5
+fagott:
+  name: fagott
+  short_desc: "Fábol van, elég randa"
+  long_desc: "Valami szőrnyűség"
+  price: 2345000
   published: false

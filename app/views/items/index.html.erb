@@ -30,7 +30,7 @@
 					<%= image_tag "/images/default.png" %>
 				<% end %>
 			<% end %>
-			<div class="item_box">
+			<div class="item_box" data-id="<%= item.id %>">
 				<div class="item_header">
 					<%= link_to item do %>
 						<%= item.name %>
